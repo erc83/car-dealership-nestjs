@@ -1,7 +1,7 @@
-import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Delete } from '@nestjs/common';
 import { CarsService } from './cars.service';
 
-@Controller('cars')           // contiene el controllador escucha la solicitud del cliente y emitir respuestas
+@Controller('/cars')           // contiene el controllador escucha la solicitud del cliente y emitir respuestas
 export class CarsController {
 
     //DI
@@ -14,11 +14,37 @@ export class CarsController {
         return this.carsService.findAll()
     }
 
-    @Get(':id')
+    @Get('/:id')
     getCarById( @Param('id', ParseIntPipe ) id: number ) { //@Param('id') -  @Body() -  @Query() -  @Res()
         console.log({ id })
 
         return this.carsService.findOneById( id )
     }
 
+    @Post()
+    create( @Body() body: any ) {
+        return body
+    }
+
+    @Put('/:id')
+    update( @Body() body: any, @Param('id', ParseIntPipe) id:number ) {
+        const car = this.carsService.findOneById( id )
+        const { brand, model } = body
+
+        const carUpdate = {
+            ...car,
+            brand,
+            model
+        }
+        return carUpdate
+    }
+
+
+    @Delete('/:id')
+    delete( @Param('id', ParseIntPipe ) id: number ) {
+        return {
+            method: 'delete',
+            id
+        }
+    }
 }
