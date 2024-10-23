@@ -15,7 +15,7 @@ export class CarsController {
     }
 
     @Get('/:id')
-    getCarById( @Param('id', ParseIntPipe ) id: number ) { //@Param('id') -  @Body() -  @Query() -  @Res()
+    getCarById( @Param('id', ParseIntPipe ) id: string ) { //@Param('id') -  @Body() -  @Query() -  @Res()
         console.log({ id })
 
         return this.carsService.findOneById( id )
@@ -27,7 +27,7 @@ export class CarsController {
     }
 
     @Put('/:id')
-    update( @Body() body: any, @Param('id', ParseIntPipe) id:number ) {
+    update( @Body() body: any, @Param('id') id:string ) {
         const car = this.carsService.findOneById( id )
         const { brand, model } = body
 
