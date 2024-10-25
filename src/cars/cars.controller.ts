@@ -1,5 +1,6 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Delete } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { CarsService } from './cars.service';
+import { CreateCarDto } from './dto';
 
 @Controller('/cars')           // contiene el controllador escucha la solicitud del cliente y emitir respuestas
 export class CarsController {
@@ -15,15 +16,23 @@ export class CarsController {
     }
 
     @Get('/:id')
-    getCarById( @Param('id', ParseIntPipe ) id: string ) { //@Param('id') -  @Body() -  @Query() -  @Res()
+    getCarById( @Param('id', ParseUUIDPipe ) id: string ) { //@Param('id') -  @Body() -  @Query() -  @Res()
+        console.log({ id })
+
+        return this.carsService.findOneById( id )
+    }
+
+
+    @Get('/v4/:id')
+    getCarByIdV4( @Param('id', new ParseUUIDPipe({ version: '5'}) ) id: string ) { //@Param('id') -  @Body() -  @Query() -  @Res()
         console.log({ id })
 
         return this.carsService.findOneById( id )
     }
 
     @Post()
-    create( @Body() body: any ) {
-        return body
+    create( @Body() createCarDto: CreateCarDto ) {
+        return createCarDto
     }
 
     @Put('/:id')
