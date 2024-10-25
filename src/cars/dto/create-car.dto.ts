@@ -1,4 +1,4 @@
-import { IsString } from "class-validator"
+import { IsString, MinLength } from "class-validator"
 
 
 export class CreateCarDto {
@@ -7,10 +7,16 @@ export class CreateCarDto {
     readonly brand: string               // no cambian sus propiedades se usa readonly
     
     @IsString()
+    @MinLength(3, {message: `the model most be contains minimum 3 letters`})        // se pueden agregar mas decoradores
     readonly model: string
 
 }
 
 // mas adelante los DTO nos van a servir para hacer validaciones de la data
+
+
+
+
+
 
 

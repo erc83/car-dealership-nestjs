@@ -3,7 +3,7 @@ import { CarsService } from './cars.service';
 import { CreateCarDto } from './dto';
 
 @Controller('/cars')           // contiene el controllador escucha la solicitud del cliente y emitir respuestas
-@UsePipes( ValidationPipe )         // se agrego para todos los dto card 
+// @UsePipes( ValidationPipe )         // se comento para agregarlo globalmente en la app 
 export class CarsController {
 
     //DI
