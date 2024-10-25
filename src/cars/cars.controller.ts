@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Delete, ParseUUIDPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Delete, ParseUUIDPipe, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CarsService } from './cars.service';
 import { CreateCarDto } from './dto';
 
 @Controller('/cars')           // contiene el controllador escucha la solicitud del cliente y emitir respuestas
+@UsePipes( ValidationPipe )         // se agrego para todos los dto card 
 export class CarsController {
 
     //DI
@@ -31,6 +32,7 @@ export class CarsController {
     }
 
     @Post()
+    //@UsePipes( ValidationPipe )     // se puede enviar a nivel de controllador
     create( @Body() createCarDto: CreateCarDto ) {
         return createCarDto
     }
