@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { v4 as uuid } from 'uuid'
 import { Car } from './interfaces/car.interface';
+import { CreateCarDto } from './dto/create-car.dto';
 
 @Injectable()                   // se puede inyectar
 export class CarsService {
@@ -41,5 +42,22 @@ export class CarsService {
 
     }
 
+    // usando Dto
+    create( createCarDto: CreateCarDto ) {
+        
+        if( !createCarDto ) {
+            throw new NotFoundException(`Internal server error`)
+        }
+
+        const car: Car = {
+            id: uuid(),
+            ...createCarDto    //esparcir las propiedades
+        }
+
+        this.cars.push( car )   // carga al array de cars
+        
+        return car
+
+    }
 
 }
