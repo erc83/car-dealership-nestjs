@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Delete, ParseUUIDPipe, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CarsService } from './cars.service';
-import { CreateCarDto } from './dto';
+import { CreateCarDto, UpdateCarDto } from './dto';
 import { create } from 'domain';
 
 @Controller('/cars')           // contiene el controllador escucha la solicitud del cliente y emitir respuestas
@@ -39,16 +39,12 @@ export class CarsController {
     }
 
     @Put('/:id')
-    update( @Body() body: any, @Param('id') id:string ) {
-        const car = this.carsService.findOneById( id )
-        const { brand, model } = body
+    update( 
+        @Body() updateCreateDto: UpdateCarDto, 
+        @Param('id', ParseUUIDPipe) id:string ) {
 
-        const carUpdate = {
-            ...car,
-            brand,
-            model
-        }
-        return carUpdate
+            return this.carsService.update( id , updateCreateDto )
+
     }
 
 
