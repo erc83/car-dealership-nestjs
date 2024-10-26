@@ -8,21 +8,11 @@ import { UpdateCarDto } from './dto';
 export class CarsService {
 
     private cars: Car[] = [            // al ser private solo puede ser consumido dentro del servicio
-        {
+        /* {
             id: uuid(),
             brand: 'Toyota',
             model: 'Corolla'
-        },
-        {
-            id: uuid(),
-            brand: 'Honda',
-            model: 'Civic'
-        },
-        {
-            id: uuid(),
-            brand: 'Jeep',
-            model: 'Cherokee'
-        },
+        }, */
     ]
 
     // creacion de metodo

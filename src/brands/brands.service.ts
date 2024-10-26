@@ -9,11 +9,11 @@ export class BrandsService {
 
   // simula base de datos
   private brands: Brand[] = [
-    {
+    /* {
       id: uuid(),
       name: 'Toyota',
       createdAt: new Date().getTime(),
-    }
+    } */
   ]
 
   create(createBrandDto: CreateBrandDto) {
