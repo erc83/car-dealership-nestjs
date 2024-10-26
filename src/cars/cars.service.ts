@@ -86,4 +86,9 @@ export class CarsService {
         }
     }
 
+    // no para produccion
+    fillCarsWithSeedData( cars: Car[] ) {
+        this.cars = cars
+    }
+
 }

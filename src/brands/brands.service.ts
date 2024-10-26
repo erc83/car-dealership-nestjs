@@ -61,4 +61,9 @@ export class BrandsService {
   remove(id: string) {
     this.brands = this.brands.filter( brand => brand.id !== id )
   }
+
+  // no para produccion
+  fillCarsWithSeedData( brands: Brand[] ) {
+    this.brands = brands
+  }
 }
