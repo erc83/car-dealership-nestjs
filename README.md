@@ -28,14 +28,14 @@ $ yarn run start:dev
 ## Excecute Seed Data
 
 ```
-localhost:3000/seed
+http://localhost:3000/seed
 ```
 
-## CRUD cars Enspoint
+## CRUD cars Endpoint
 
 Get
 ```
-localhost:3000/cars
+http://localhost:3000/cars
 ```
 
 Get by uuid
